@@ -17,7 +17,7 @@ export default function HomeScreen() {
           key={5}
         />
         <View className="gap-6">
-          <View className="flex-row flex-wrap ju gap-4">
+          <View className="flex-row flex-wrap gap-3">
             <GoldPriceCard />
             <GoldPriceCard />
             <GoldPriceCard />

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { BarChart, Grid, XAxis } from "react-native-svg-charts";
 
 const chartData = [
@@ -35,17 +35,13 @@ export default function ChartBarInteractive() {
   const data = chartData.map((item: any) => item[activeChart]);
 
   return (
-    <ScrollView className="flex-1 bg-[#1c1b1b]">
+    <View className="flex-1 bg-[#1c1b1b] p-8">
       {/* Header */}
-      <Text className="text-2xl font-bold mx-3 text-[#E5E2E1]">
-        24-Hour Trend
-      </Text>
-      <Text className="text-2xl font-bold mx-3 text-[#E5E2E1]">
-        Performance
-      </Text>
+      <Text className="text-2xl font-bold text-[#E5E2E1]">24-Hour Trend</Text>
+      <Text className="text-2xl font-bold text-[#E5E2E1]">Performance</Text>
 
       {/* Toggle buttons */}
-      <View className="flex-row mx-3 space-x-2 mt-4">
+      <View className="flex-row space-x-2 mt-4 gap-2">
         <Pressable
           onPress={() => setActiveChart("desktop")}
           className={`flex-1 p-3 rounded ${
@@ -74,12 +70,15 @@ export default function ChartBarInteractive() {
       </View>
 
       {/* Chart */}
-      <View className="h-64 m-5">
+      <View className="h-[184px] gap-6">
         <BarChart
           style={{ flex: 1 }}
           data={data}
-          svg={{ fill: activeChart === "desktop" ? "purple" : "orange" }}
-          contentInset={{ top: 20, bottom: 20 }}>
+          svg={{
+            fill: "#F2CA50",
+          }}
+          contentInset={{ top: 20, bottom: 20 }}
+          spacingInner={0.2}>
           <Grid />
         </BarChart>
 
@@ -90,10 +89,10 @@ export default function ChartBarInteractive() {
             const date = new Date(chartData[index].date);
             return `${date.getMonth() + 1}/${date.getDate()}`;
           }}
-          contentInset={{ left: 20, right: 20 }}
-          svg={{ fontSize: 10, fill: "black" }}
+          contentInset={{ left: 10, right: 10 }}
+          svg={{ fontSize: 9, fill: "#D0C5AF" }}
         />
       </View>
-    </ScrollView>
+    </View>
   );
 }
